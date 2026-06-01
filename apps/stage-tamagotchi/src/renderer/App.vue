@@ -23,6 +23,7 @@ import { onMounted, onUnmounted, watch } from 'vue'
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import { toast, Toaster } from 'vue-sonner'
 
+import BackgroundVisionCapture from './components/BackgroundVisionCapture.vue'
 import ResizeHandler from './components/ResizeHandler.vue'
 
 import {
@@ -286,6 +287,7 @@ onUnmounted(() => {
     <Toaster />
   </ToasterRoot>
   <ResizeHandler />
+  <BackgroundVisionCapture />
   <RouterView />
 </template>
 
