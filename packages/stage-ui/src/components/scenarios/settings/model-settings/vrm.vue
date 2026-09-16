@@ -27,6 +27,7 @@ const { t } = useI18n()
 const modelStore = useModelStore()
 const {
   modelSize,
+  maxFps,
   modelOffset,
   cameraFOV,
   modelRotationY,
@@ -48,6 +49,11 @@ const {
   skyBoxIntensity,
 } = storeToRefs(modelStore)
 const controlsLocked = computed(() => props.runtimeSnapshot.controlsLocked)
+const fpsOptions = computed(() => [
+  { value: 0, label: t('settings.vrm.fps.unlimited') },
+  { value: 60, label: '60 FPS' },
+  { value: 30, label: '30 FPS' },
+])
 const canExtractColors = computed(() => props.runtimeSnapshot.canCapturePreview)
 const trackingOptions = computed<{
   value: 'camera' | 'mouse' | 'none'
@@ -83,6 +89,12 @@ const envOptions = computed(() => [
 </script>
 
 <template>
+  <Container :title="t('settings.vrm.fps.title')" icon="i-solar:speedometer-bold-duotone">
+    <p :class="['text-sm', 'text-neutral-500 dark:text-neutral-400']">
+      {{ t('settings.vrm.fps.description') }}
+    </p>
+    <SelectTab v-model="maxFps" :options="fpsOptions" />
+  </Container>
   <Container
     :title="t('settings.pages.models.sections.section.scene')"
     icon="i-solar:people-nearby-bold-duotone"
